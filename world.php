@@ -15,10 +15,42 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
-<?=  $country; ?>
-
+<?=  isset($_GET['context']) ?>
 <ul>
-<?php foreach ($results as $row): ?>
-  <li><?= $row['name'] . ' is ruled by ' . $row['head_of_state']; ?></li>
-<?php endforeach; ?>
-</ul>
+<?php  echo "<table border='2px'
+<tr>
+
+<th>Name</th>
+
+<th>Continent</th>
+
+<th>Independence</th>
+
+<th>Head of State</th>
+
+</tr>"; ?>
+<?php
+
+ foreach ($results as $row):
+
+{
+
+echo "<tr>";
+
+echo "<td>" . $row['name'] . "</td>";
+
+echo "<td>" . $row['continent'] . "</td>";
+
+echo "<td>" . $row['independence_year'] . "</td>";
+
+echo "<td>" . $row['head_of_state'] . "</td>";
+
+echo "</tr>";
+
+}
+endforeach;
+echo "</table>";
+?>
+ 
+
+ 
