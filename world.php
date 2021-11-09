@@ -18,10 +18,34 @@ $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
+<html>
+<head>
+     
+    <style type="text/css">
+    table {
+        margin: 10px;
+        border:none;
+        border-collapse: collapse;
+        
+    }
+    th{
+      background-color: #04AA6D;
+      color: white;
+      padding: 15px;
+      text-align: left;
+      
+    }
+    td{
+      text-align: left;
+      padding: 15px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
+    </style>
+</head>
 
-<ul>
+
 <?php if($cities == "nocities"):
-  echo "<table border='2px'
+  echo "<table 
   <tr>
 
   <th>Name</th>
@@ -58,7 +82,7 @@ echo "</table>";
 
 ?>
 <?php if($cities == "cities"):
-  echo "<table border='2px'
+  echo "<table
   <tr>
 
   <th>Name</th>
@@ -72,7 +96,7 @@ echo "</table>";
   <?php
 
   foreach ($results1 as $row):{
-    if($row['countryname'] == $country):
+    if($row['countryname'] == $country ||  $country == ""):
       {
   
   

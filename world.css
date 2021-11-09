@@ -1,1 +1,42 @@
-/* Add your own styles */
+header{
+    background-color:lightslategray;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+main{
+    display: grid;
+    grid-template-rows: auto auto;
+    padding: 5px;
+}
+#controls{
+    align-content: center;
+    margin-left: 600px;
+}
+input{
+    padding: 5px;
+    box-shadow: 1px;
+    width: 600px;
+}
+#lookup{
+    margin-left: 250px;
+    margin-top: 10px;
+    background-color: mediumseagreen;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+
+}
+#lookupcitites{
+    margin-top: 10px;
+    background-color: cornflowerblue;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+#result{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    
+}
