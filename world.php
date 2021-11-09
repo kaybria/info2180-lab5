@@ -6,51 +6,99 @@ $password = 'password123';
 $dbname = 'world';
 
 $country = $_GET['country'];
+$cities = $_GET['context'];
 
 $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
 $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
+$stmt1 = $conn->query("SELECT countries.name AS countryname, cities.name AS city, cities.district,cities.population FROM countries,cities WHERE countries.code = cities.country_code ");
 
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
 
 
 ?>
-<?=  isset($_GET['context']) ?>
+
 <ul>
-<?php  echo "<table border='2px'
-<tr>
+<?php if($cities == "nocities"):
+  echo "<table border='2px'
+  <tr>
 
-<th>Name</th>
+  <th>Name</th>
 
-<th>Continent</th>
+  <th>Continent</th>
 
-<th>Independence</th>
+  <th>Independence</th>
 
-<th>Head of State</th>
+  <th>Head of State</th>
 
-</tr>"; ?>
-<?php
+  </tr>"; ?>
+  <?php
 
- foreach ($results as $row):
+  foreach ($results as $row):
 
-{
+  {
 
-echo "<tr>";
+  echo "<tr>";
 
-echo "<td>" . $row['name'] . "</td>";
+  echo "<td>" . $row['name'] . "</td>";
 
-echo "<td>" . $row['continent'] . "</td>";
+  echo "<td>" . $row['continent'] . "</td>";
 
-echo "<td>" . $row['independence_year'] . "</td>";
+  echo "<td>" . $row['independence_year'] . "</td>";
 
-echo "<td>" . $row['head_of_state'] . "</td>";
+  echo "<td>" . $row['head_of_state'] . "</td>";
 
-echo "</tr>";
+  echo "</tr>";
 
-}
+  }
 endforeach;
+endif;
+echo "</table>";
+
+?>
+<?php if($cities == "cities"):
+  echo "<table border='2px'
+  <tr>
+
+  <th>Name</th>
+
+  <th>District</th>
+
+  <th>Population</th>
+
+
+  </tr>"; ?>
+  <?php
+
+  foreach ($results1 as $row):{
+    if($row['countryname'] == $country):
+      {
+  
+  
+      echo "<tr>";
+  
+      echo "<td>" . $row['city'] . "</td>";
+  
+      echo "<td>" . $row['district'] . "</td>";
+  
+      echo "<td>" . $row['population'] . "</td>";
+  
+  
+      echo "</tr>";
+  
+      }
+    endif;
+
+  }
+   
+  endforeach;
+endif;
 echo "</table>";
 ?>
+
+
+
  
 
  
